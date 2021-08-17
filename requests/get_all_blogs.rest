@@ -1,0 +1,28 @@
+GET http://localhost:3003/api/blogs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdGNodW1hbiIsImlkIjoiNjBjNzExZTAyMGYwY2IxMDI5OGY0ZWU3IiwiaWF0IjoxNjI0MDA2MDE0fQ.YZliH3ZM1czvJ6foCnIA6sjUP1QFU79nXV0WEG8hHO0
+###
+DELETE http://localhost:3003/api/blogs/60d43946b0f3c0043c19e9ba
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtjQmlzc2UiLCJpZCI6IjYwY2I0YzQ3MmVmNjE5MjUwNDE2NWY1ZCIsImlhdCI6MTYyNDUyNzAyOH0.kbTvVOu0SZ6zMRf82jtNOp-x1VcDkNgxWpOdV8nFduo
+###
+POST http://localhost:3003/api/blogs
+content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IktjQmlzc2UiLCJpZCI6IjYwZGMwMTA0NmFlOGY0MDNjMmEwNWFkZiIsImlhdCI6MTYyNTAzMDkzOX0.HM4Z7qkD05Ox-AnC3dBX0RJ7NvyHu8_LaP7gfXLSHR0
+
+{
+    "title": "Lamo lamo",
+    "author": "Ranjhana",
+    "url": "www.desi-movies.com",
+    "likes":22
+    
+}
+###
+PUT  http://localhost:3003/api/blogs/60c72054cf51d3042d9bf1fa
+content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdGNodW1hbiIsImlkIjoiNjBjNzExZTAyMGYwY2IxMDI5OGY0ZWU3IiwiaWF0IjoxNjIzODYzMjE2fQ.XluHaR-LIyqiuLSTd9OXk960Gplx36rFNRq_C3nwdQQ
+
+{
+"title": "In the love of 1000 dreams",
+"author": "putali",
+"url": "www.mamathelegend",
+"likes": 3333
+}
