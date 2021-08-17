@@ -4,10 +4,10 @@ const User = require("../models/user");
 
 usersRouter.get("/api/users", async (request, response) => {
   const users = await User.find({}).populate("blogs");
-  response.json(users);
+  response.json(users.map((user) => user.toJSON()));
 });
 
-usersRouter.post("/users", async (request, response) => {
+usersRouter.post("/api/users", async (request, response) => {
   const body = request.body;
 
   const saltRounds = 10;
