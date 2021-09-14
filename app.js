@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 require("express-async-errors");
 const cors = require("cors");
@@ -10,6 +11,7 @@ const middleware = require("./utils/middleware");
 app.use(cors());
 app.use(express.static("build"));
 app.use(express.json());
+
 app.use(middleware.requestLogger);
 app.use(middleware.tokenExtractor);
 
@@ -22,6 +24,15 @@ if (process.env.NODE_ENV === "test") {
   app.use("/api/testing", testingRouter);
 }
 
+app.get("/api", (req, res, done) =>
+  res.status(201).json({ message: "Hello World!" })
+);
+
+app.use(express.static("client/build"));
+
+app.get("*", (req, res) =>
+  res.sendFile(path.resolve("client", "build", "index.html"))
+);
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 

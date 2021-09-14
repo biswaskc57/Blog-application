@@ -32,8 +32,16 @@ blogsRouter.post("/", async (request, response, next) => {
 
     if (!request.token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
-    } else if (body.title === undefined || body.url === undefined) {
+    } else if (
+      body.title === undefined ||
+      body.url === undefined ||
+      request.body === null
+    ) {
       return response.status(400).json({ error: "title or url missing" });
+    } else if (request.body.user === null) {
+      return response
+        .status(400)
+        .json({ error: "Problem allocating the user" });
     } else {
       const user = request.user;
       //new Blog object is created.
@@ -52,6 +60,7 @@ blogsRouter.post("/", async (request, response, next) => {
 
       user.blogs = user.blogs.concat(savedBlog._id);
       await user.save();
+
       console.log(savedBlog);
 
       response.json(savedBlog.toJSON());
@@ -101,12 +110,26 @@ blogsRouter.put("/:id", async (request, response, next) => {
   }
 });
 
-blogsRouter.get("/:id/comments", async (request, response) => {
-  const blog = await Blog.findById(request.params.id);
-  if (blog) {
-    response.json(blog.toJSON());
-  } else {
-    response.status(404).end();
+blogsRouter.post("/:id/comments", async (request, response) => {
+  const blog = request.body;
+
+  console.log(request.body);
+  console.log(request);
+  const newBlog = {
+    title: blog.title,
+    author: blog.author,
+    url: blog.url,
+    likes: blog.likes,
+    comments: blog.comments,
+  };
+
+  console.log(newBlog.comments);
+
+  try {
+    await Blog.findByIdAndUpdate(request.params.id, newBlog, { new: true });
+    response.status(200).json(newBlog);
+  } catch (err) {
+    next(err);
   }
 });
 
