@@ -1,0 +1,6 @@
+//comes mongo db congfig
+MONGODB_URI= "mongodb+srv://<Username>:<Password>@cluster0.sfqt0.mongodb.net/persondb??retryWrites=true&w=majority"
+TEST_MONGODB_URI= "mongodb+srv://<Username>:<Password>@cluster0.sfqt0.mongodb.net/persondb-test?retryWrites=true&w=majority"
+
+PORT=3003
+SECRET="<Enter the secret here>"
