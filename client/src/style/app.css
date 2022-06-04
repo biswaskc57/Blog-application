@@ -70,11 +70,11 @@ button {
 
 .footer {
   clear: both;
-  position: relative;
+  position: absolute;
   background-color: burlywood;
-  margin-top: 300px;
   height: 60px;
-  margin-bottom: -5px;
+  bottom: 0;
+  width: 100vw
 }
 .footerText {
   margin-left: 30%;
